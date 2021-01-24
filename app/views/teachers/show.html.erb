@@ -1,0 +1,15 @@
+<% if current_teacher.id == @teacher.id %>
+  <h1><%= @teacher.last_name %>先生のマイページ</h1>
+<% else %>
+  <h1><%= @teacher.last_name %>先生の詳細ページ</h1>
+<% end %>
+
+
+  
+
+<% if current_teacher.id == @teacher.id %>
+  <a href="#">授業記録を記入</a><br />
+  <a href="#">生徒用ファイルを記入</a><br />
+  <%= link_to "講師情報の編集", profile_edit_path %><br />
+  <%= link_to "logout", destroy_teacher_session_path, method: :delete %>
+<% end %>

@@ -1,0 +1,26 @@
+<%= form_for current_teacher, url: {action: 'profile_update'} do |f| %>
+  <%= render "teachers/shared/error_messages", resource: current_teacher%>
+  <div class="field">
+    <%= f.label :姓 %><br />
+    <%= f.text_field :last_name %> 
+  </div>
+  
+  <div class="field">
+    <%= f.label :名 %><br />
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :文系か理系か %><br />
+    <%= f.select :course, [["文系","文系"],["理系","理系"]], include_blank: "選択して下さい"%>
+  </div>
+  
+  <div class="field">
+    <%= f.label :メールアドレス %><br />
+    <%= f.text_field :email, autocomplete: "email" %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>

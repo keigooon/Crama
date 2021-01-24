@@ -1,0 +1,4 @@
+<p>講師一覧</p>
+<% @teachers.each do |teacher| %>
+  <%= "#{teacher.last_name}" + " #{teacher.first_name} 先生" %>
+<% end %>
