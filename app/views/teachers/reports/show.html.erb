@@ -1,0 +1,82 @@
+<div class="card offset-sm-2 col-sm-8">
+  
+  <div class="card-header row">
+    <span class="offset-sm-2 col-sm-4">指導内容報告書</span>
+    <span class="offset-sm-2 col-sm-4">授業日 : <%= @report.lesson_date %></span>
+  </div>
+  
+  <div class="card-body">
+    <div class="row p-2">
+      <div class="col col-12 col-sm-6">
+        <a>生徒名</a>
+        <div class="p-3 border bg-light"><%= @report.student.full_name %></div>
+      </div>
+      <div class="col col-6 col-sm-3">
+        <a>学年</a>
+        <div class="p-3 border bg-light"><%= @report.student.gakunen_grade %></div>
+      </div>
+      <div class="col col-6 col-sm-3">
+        <a>科目</a>
+        <div class="p-3 border bg-light"><%= @report.subject %></div>
+      </div>
+    </div>
+    <div class="row p-2">
+      <div class="col-sm-6">
+        <a>教材</a>
+        <div class="p-3 border bg-light"><%= @report.teaching_material %></div>
+      </div>
+      <div class="col-sm-6">
+        <a>単元</a>
+        <div class="p-3 border bg-light"><%= @report.unit %></div>
+      </div>
+    </div>
+    
+    <div class="p-2">
+      <a>授業内容</a>
+      <div class="p-3 border bg-light">
+        <%=  safe_join(@report.content.split("\n"), tag(:br)) %>
+      </div>
+    </div>
+    
+    <div class="p-2">
+      <a>演習</a>
+      <div class="p-3 border bg-light">
+        <%= @report.exercise %>
+      </div>
+    </div>
+    
+    <div class="row p-2">
+      <p class="col-12 text-muted">理解度および態度は1〜5の5段階で評価しております。3を基準とし、５に近づくほどよいとしています。また宿題を忘れた場合は、宿題の理解度は0としております。</p>
+      <div class="col col-6">
+        <a>学習理解度</a>
+        <div class="p-3 border bg-light"><%= @report.comprehension_lesson%></div>
+      </div>
+      <div class="col col-6">
+        <a>学習態度</a>
+        <div class="p-3 border bg-light"><%= @report.attitude %></div>
+      </div>
+    </div>
+    
+    <div class="row p-2">
+      <div class="col col-6">
+        <a>前回の宿題</a>
+        <div class="p-3 border bg-light"><%= @report.done_homework%></div>
+      </div>
+      <div class="col col-6">
+        <a>その理解度</a>
+        <div class="p-3 border bg-light"><%= @report.comprehension_homework %></div>
+      </div>
+    </div>
+    
+    <div class="p-2">
+      <a>宿題</a>
+      <div class="p-2 text-muted">宿題はコツコツと進めましょう。１週間のうち1日だけやっても自分の力にはなりません</div>
+      <div class="p-3 border bg-light">
+        <%= @report.homework %>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  

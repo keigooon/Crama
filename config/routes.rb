@@ -1,26 +1,39 @@
 Rails.application.routes.draw do
   root to: 'top#top'
   
-  devise_for :students, controllers: {
-    sessions: 'students/sessions',
-    passwords: 'students/passwords',
-    registrations: 'students/registrations'
+  #生徒関連
+  
+  devise_for :students, skip: ["passwords","registrations"], controllers: {
+    sessions: 'students/sessions'
   }
   
+  devise_scope :student do
+    get 'students/sign_up', to: 'students/registrations#new', as: :new_student_registration
+    #get 'students/profile_edit', to: 'students/registrations#profile_edit', as: :profile_edit
+    #patch 'students/profile_update', to: 'students/registrations#profile_update', as: :profile_update
+  end
+  
   resources :students, :only => [:show]
+  resources :students do
+    resources :reports, :only => [:index, :show] , controller: "students/reports"
+  end
   
-  #あとでteachers/#{teachers.id}/profile_editに変更したい
   
-  devise_for :teachers, controllers: {
-    sessions: 'teachers/sessions',
-    passwords: 'teachers/passwords',
-    registrations: 'teachers/registrations'
+  #講師関連
+  #あとでteachers/#{teachers.id}/profile_editにしたいかも
+  
+  devise_for :teachers, skip: ["passwords", "registrations"], controllers: {
+    sessions: 'teachers/sessions'
   }
   
   devise_scope :teacher do
+    get 'teachers/sign_up', to: 'teachers/registrations#new', as: :new_teacher_registration
     get 'teachers/profile_edit', to: 'teachers/registrations#profile_edit', as: :profile_edit
     patch 'teachers/profile_update', to: 'teachers/registrations#profile_update', as: :profile_update
   end
 
-  resources :teachers, :only => [:index, :show]
+  resources :teachers, :only => [:index, :show] do
+    resources :reports, controller: "teachers/reports"
+  end
+  
 end

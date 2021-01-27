@@ -8,8 +8,9 @@
   
 
 <% if current_teacher.id == @teacher.id %>
-  <a href="#">授業記録を記入</a><br />
-  <a href="#">生徒用ファイルを記入</a><br />
+  <%= link_to "生徒用ファイル", teacher_reports_path(current_teacher) %><br />
   <%= link_to "講師情報の編集", profile_edit_path %><br />
   <%= link_to "logout", destroy_teacher_session_path, method: :delete %>
+<% else %>
+  <a href="#">代行依頼をする</a>
 <% end %>
