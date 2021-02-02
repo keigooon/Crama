@@ -22,18 +22,20 @@ Rails.application.routes.draw do
   #講師関連
   #あとでteachers/#{teachers.id}/profile_editにしたいかも
   
-  devise_for :teachers, skip: ["passwords", "registrations"], controllers: {
-    sessions: 'teachers/sessions'
+  devise_for :teachers, skip: ["passwords"], controllers: {
+    sessions: 'teachers/sessions',
+    registrations: 'teachers/registrations'
   }
   
   devise_scope :teacher do
-    get 'teachers/sign_up', to: 'teachers/registrations#new', as: :new_teacher_registration
     get 'teachers/profile_edit', to: 'teachers/registrations#profile_edit', as: :profile_edit
     patch 'teachers/profile_update', to: 'teachers/registrations#profile_update', as: :profile_update
   end
 
-  resources :teachers, :only => [:index, :show] do
-    resources :reports, controller: "teachers/reports"
+  resources :teachers, :only => [:index] 
+  
+  namespace :teachers do
+    resources :reports, controller: :reports
   end
   
 end

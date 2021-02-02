@@ -1,6 +1,6 @@
 class Teacher < ApplicationRecord
-  has_many :reports
-  has_many :students, through: :reports
+  has_many :lessons
+  has_many :students, through: :lessons
   
   
   # Include default devise modules. Others available are:

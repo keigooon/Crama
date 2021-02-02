@@ -1,11 +1,41 @@
-<p><%= @teacher.last_name %>先生の報告書一覧</p>
-<%= link_to "報告書の作成", new_teacher_report_path %>
-<% @reports.each do |report| %>
-  <p>
-    <%= report.created_at.strftime('%Y/%m/%d') %>：<%= "#{report.student.full_name}" %>
-    <%= link_to "授業内容", teacher_report_path(current_teacher,report) %>
-    <%= link_to "修正", edit_teacher_report_path(current_teacher,report) %> 
-    <%= link_to "削除", teacher_report_path(current_teacher,report), method: :delete, data: { confirm: "本当に削除してもよいですか？"} %>
-  </p>
-  
-<% end %>
+<div class="row">
+  <div class="offset-sm-2 col-sm-8">
+    <div class="card">
+      <div class="card-header text-center">
+        <div>
+          <%= @teacher.last_name %>先生の報告書一覧
+        </div>
+        <div>
+          <%= link_to "報告書を作成する", new_teachers_report_path, class: "btn btn-primary m-3"%>
+        </div>
+      </div>
+      <div class="card-body text-center">
+        <table class="table table-bordered table-responsive-sm">
+          <thead>
+            <tr class="table-info">
+              <th scope="col" class="text-nowrap">生徒名</th>
+              <th scope="col" class="text-nowrap">授業日</th>
+              <th scope="col" class="text-nowrap">科目</th>
+              <th scope="col" class="text-nowrap">報告書</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @lessons.each do |lesson| %>
+              <tr>
+                <td class="text-nowrap"><%= lesson.student.full_name %></td>
+                <td class="text-nowrap"><%= lesson.lesson_date.strftime('%m月%d日') %></td>
+                <td class="text-nowrap"><%= lesson.subject %></td>
+                <td class="text-nowrap"><%= link_to "詳細", teachers_report_path(lesson), class: "btn btn-outline-dark" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <ul class="nav">
+        <li class="nav-link">
+          <%= link_to '講師ページ', teachers_path%>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

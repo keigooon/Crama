@@ -1,11 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  lesson: one
   content: MyText
-  teacher: one
-  student: one
+  exercise: MyString
+  comprehension_lesson: 1
+  attitude: 1
+  done_homework: MyString
+  comprehension_homework: 1
+  homework: MyString
 
 two:
+  lesson: two
   content: MyText
-  teacher: two
-  student: two
+  exercise: MyString
+  comprehension_lesson: 1
+  attitude: 1
+  done_homework: MyString
+  comprehension_homework: 1
+  homework: MyString

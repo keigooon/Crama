@@ -1,33 +1,40 @@
 <div class="card offset-sm-2 col-sm-8">
   
-  <div class="card-header row">
-    <span class="offset-sm-2 col-sm-4">指導内容報告書</span>
-    <span class="offset-sm-2 col-sm-4">授業日 : <%= @report.lesson_date %></span>
+  <div class="card-header row text-center">
+    <div class="col-md-6" >
+      <div>担当講師</div>
+      <div style="font-size:20px;"><%= @report.lesson.teacher.full_name %></div>
+    </div>
+    <div class=" col-md-6">
+      <div>授業日</div>
+      <div><%= @report.lesson.lesson_date %></div>
+    </div>
   </div>
   
   <div class="card-body">
+    
     <div class="row p-2">
-      <div class="col col-12 col-sm-6">
+      <div class="col col-12 col-md-6">
         <a>生徒名</a>
-        <div class="p-3 border bg-light"><%= @report.student.full_name %></div>
+        <div class="p-3 border bg-light"><%= @report.lesson.student.full_name %></div>
       </div>
-      <div class="col col-6 col-sm-3">
+      <div class="col col-6 col-md-3">
         <a>学年</a>
-        <div class="p-3 border bg-light"><%= @report.student.gakunen_grade %></div>
+        <div class="p-3 border bg-light"><%= @report.lesson.student.gakunen_grade %></div>
       </div>
-      <div class="col col-6 col-sm-3">
+      <div class="col col-6 col-md-3">
         <a>科目</a>
-        <div class="p-3 border bg-light"><%= @report.subject %></div>
+        <div class="p-3 border bg-light"><%= @report.lesson.subject %></div>
       </div>
     </div>
     <div class="row p-2">
-      <div class="col-sm-6">
+      <div class="col-md-6">
         <a>教材</a>
-        <div class="p-3 border bg-light"><%= @report.teaching_material %></div>
+        <div class="p-3 border bg-light"><%= @report.lesson.teaching_material %></div>
       </div>
-      <div class="col-sm-6">
+      <div class="col-md-6">
         <a>単元</a>
-        <div class="p-3 border bg-light"><%= @report.unit %></div>
+        <div class="p-3 border bg-light"><%= @report.lesson.unit %></div>
       </div>
     </div>
     
@@ -47,22 +54,22 @@
     
     <div class="row p-2">
       <p class="col-12 text-muted">理解度および態度は1〜5の5段階で評価しております。3を基準とし、５に近づくほどよいとしています。また宿題を忘れた場合は、宿題の理解度は0としております。</p>
-      <div class="col col-6">
+      <div class="col col-md-6">
         <a>学習理解度</a>
         <div class="p-3 border bg-light"><%= @report.comprehension_lesson%></div>
       </div>
-      <div class="col col-6">
+      <div class="col col-md-6">
         <a>学習態度</a>
         <div class="p-3 border bg-light"><%= @report.attitude %></div>
       </div>
     </div>
     
     <div class="row p-2">
-      <div class="col col-6">
+      <div class="col col-md-6">
         <a>前回の宿題</a>
         <div class="p-3 border bg-light"><%= @report.done_homework%></div>
       </div>
-      <div class="col col-6">
+      <div class="col col-md-6">
         <a>その理解度</a>
         <div class="p-3 border bg-light"><%= @report.comprehension_homework %></div>
       </div>
@@ -75,6 +82,20 @@
         <%= @report.homework %>
       </div>
     </div>
+  </div>
+  
+  <div class="card-footer">
+    <ul class="nav justify-content-center">
+      <li class="nav-link">
+        <%= link_to '一覧へ戻る', teachers_reports_path %>
+      </li>
+      <li class="nav-link">
+        <%= link_to '修正', edit_teachers_report_path %>
+      </li>
+      <li class="nav-link">
+        <%= link_to '削除', teachers_report_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"} %>
+      </li>
+    </ul>
   </div>
 </div>
 

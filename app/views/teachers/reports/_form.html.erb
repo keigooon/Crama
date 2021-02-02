@@ -1,0 +1,92 @@
+<%= form_for(report, :url => {:controller => :reports, :action => action}, local: true) do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+  <%= f.fields_for 'lesson_attributes', @report.lesson do |s| %>
+    <%= s.hidden_field :teacher_id, value: current_teacher.id %>
+    
+    <div class="form-group">
+      <%= s.label :student_id, '生徒を選択：' %>
+      <%= s.collection_select :student_id, Student.all, :id, :full_name %>
+    </div>
+    
+    <div class="form-group">
+      <%= s.label :lesson_date, '授業日：' %>
+      <%= s.date_select :lesson_date, use_month_numbers:true, discard_year:true, include_blank: true, selected: Date.today, date_separator:' / ' %>
+    </div>
+    
+    <div class="form-group">
+      <%= s.label :subject, '科目：' %>
+      <label><%= s.radio_button :subject, "国語", {:checked => true} %>国語</label>
+      <label><%= s.radio_button :subject, "数学" %>数学</label>
+      <label><%= s.radio_button :subject, "理科" %>理科</label>
+      <label><%= s.radio_button :subject, "社会" %>社会</label>
+      <label><%= s.radio_button :subject, "英語" %>英語</label>
+    </div>
+    
+    <div class="form-group form-inline">
+      <%= s.label :teaching_material, '教材：' %>
+      <%= s.text_field :teaching_material, class: "form-control"%>
+    </div>
+    
+    <div class="form-group form-inline">
+      <%= s.label :unit, '単元：' %>
+      <%= s.text_field :unit, class: "form-control"%>
+    </div>
+  
+  <% end %>
+  
+  
+  <div class="form-group form-inline">
+    <%= f.label :exercise, '演習：' %>
+    <%= f.text_field :exercise, class: "form-control"%>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :content, '授業内容：' %>
+    <%= f.text_area :content, class: "form-control", rows: "3"%>
+    <small class="form-text text-muted">
+      例：今日の授業では〇〇を扱いました。授業内で〜〜は理解できていました。▲▲ができていなかったので解き直しをするよう指導しました。
+    </small>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :comprehension_lesson, '学習理解度：' %>
+    <label><%= f.radio_button :comprehension_lesson, 1 %> 1</label>
+    <label><%= f.radio_button :comprehension_lesson, 2 %> 2</label>
+    <label><%= f.radio_button :comprehension_lesson, 3, {:checked => true} %> 3</label>
+    <label><%= f.radio_button :comprehension_lesson, 4 %> 4</label>
+    <label><%= f.radio_button :comprehension_lesson, 5 %> 5</label>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :attitude, '学習態度：' %>
+    <label><%= f.radio_button :attitude, 1 %> 1</label>
+    <label><%= f.radio_button :attitude, 2 %> 2</label>
+    <label><%= f.radio_button :attitude, 3 ,{:checked => true}%> 3</label>
+    <label><%= f.radio_button :attitude, 4 %> 4</label>
+    <label><%= f.radio_button :attitude, 5 %> 5</label>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :done_homework, '前回の宿題：' %>
+    <label><%= f.radio_button :done_homework, "完了", {:checked => true} %>完了</label>
+    <label><%= f.radio_button :done_homework, "途中まで" %>途中まで</label>
+    <label><%= f.radio_button :done_homework, "やってない" %>やってない</label>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :comprehension_homework, '学習理解度：' %>
+    <label><%= f.radio_button :comprehension_homework, 1 %> 1</label>
+    <label><%= f.radio_button :comprehension_homework, 2 %> 2</label>
+    <label><%= f.radio_button :comprehension_homework, 3 ,{:checked => true}%> 3</label>
+    <label><%= f.radio_button :comprehension_homework, 4 %> 4</label>
+    <label><%= f.radio_button :comprehension_homework, 5 %> 5</label>
+    <label><%= f.radio_button :comprehension_homework, 0 %>不明</label>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :homework, '宿題：' %>
+    <%= f.text_field :homework, class: "form-control"%>
+  </div>
+  
+  <%= f.submit '作成' , class: "btn btn-primary"%>
+<% end %>

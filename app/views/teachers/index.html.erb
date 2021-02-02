@@ -1,6 +1,33 @@
-<p>講師一覧</p>
-<% @teachers.each do |teacher| %>
-  <div>
-    <%= link_to "#{teacher.full_name} 先生", teacher_path(teacher) %>
+<div class="card text-center">
+  <div class="card-header">
+    <h4>講師情報</h4>
   </div>
-<% end %>
+  <div class="card-body row">
+    
+    <div class="card p-2  col-12">
+      <div class="card-body">
+        <h6 class="card-subtitle text-muted">My name</h6>
+        <h5 class="card-title pb-3"><%= current_teacher.full_name %></h5>
+        <p class="card-text">今日もお疲れ様です。授業後は生徒用ファイルの記入をしてください。講師情報に誤りある場合は修正してください。</p>
+        <%= link_to "生徒用ファイル", teachers_reports_path, class: "btn btn-outline-dark mb-3" %>
+        <%= link_to "講師情報の編集", profile_edit_path, class: "btn btn-outline-dark mb-3"  %>
+        <%= link_to "logout", destroy_teacher_session_path, class: "btn btn-outline-dark mb-3",  method: :delete %>
+      </div>
+    </div>
+    
+    <div class="card col-12">
+      <div class="card-header">
+        <h5 class="card-title">講師一覧</h5>
+      </div>
+      <div class="card-body">
+        <% @teachers.each do |teacher| %>
+          <div>
+            <%= teacher.full_name %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>

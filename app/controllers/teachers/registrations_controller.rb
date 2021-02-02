@@ -44,10 +44,10 @@ class Teachers::RegistrationsController < Devise::RegistrationsController
   def profile_update
     current_teacher.assign_attributes(account_update_params)
     if current_teacher.save
-      flash[:success] = "講師情報を編集しました"
-	    redirect_to teacher_path(current_teacher)
+      flash[:notice] = "講師情報を編集しました"
+	    redirect_to teachers_path
     else
-      flash.now[:danger] = "講師情報を編集できませんでした"
+      flash.now[:error] = "講師情報を編集できませんでした"
       render :profile_edit
     end
   end
@@ -66,7 +66,7 @@ class Teachers::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-     teacher_path(current_teacher)
+     teachers_path
   end
 
   # The path used after sign up for inactive accounts.
