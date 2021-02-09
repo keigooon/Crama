@@ -1,0 +1,20 @@
+<div class="card text-center">
+  <div class="card-header">
+    <div>Student</div>
+  </div>
+  <div class="card-body">
+    <h6 class="card-subtitle text-muted pt-3">My name</h6>
+    <h5 class="card-title"><%= current_student.full_name %>さん</h5>
+    <p class="card-text">今日もお疲れ様です。授業後はファイルが届くまで少々お待ちください。届いたら内容を確認してください。</p>
+    <p class="card-text">授業だけで成績を伸ばすのは難しいです。できるだけ毎日勉強しよう！</p>
+    <p class="card-text">家で勉強できない人は塾に来て自習しよう！また、塾以外の場所で勉強していて、わからないところがあれば気軽に質問してください。</p>
+    <div class="list-group">
+      <%= link_to "ファイルを確認する", student_reports_path(current_student), class:"btn btn-info list-group-item list-group-item-action" %>
+      <button type="button" class="list-group-item list-group-item-action">ファイルを確認する</button>
+      <button type="button" class="list-group-item list-group-item-action">質問を投稿する</button>
+      <button type="button" class="list-group-item list-group-item-action">生徒情報の修正</button>
+      <button type="button" class="list-group-item list-group-item-action">ログアウト</button>
+      <button type="button" class="list-group-item list-group-item-action">未定</button>
+    </div>
+  </div>
+</div>

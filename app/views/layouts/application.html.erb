@@ -4,9 +4,7 @@
     <title>Crama</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
+  
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     
@@ -16,6 +14,13 @@
   </head>
 
   <body>
+    <% if teacher_signed_in? %>
+      <%= render 'layouts/teacher_navbar' %>
+    <% elsif student_signed_in? %>
+      <%= render 'layouts/student_navbar' %>
+    <% else %>
+      <%= render 'layouts/navbar'%>
+    <% end %>
     <div class="container">
       <%= render 'layouts/flashes' %>
 
@@ -24,7 +29,5 @@
   
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>  
   </body>
 </html>

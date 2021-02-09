@@ -45,7 +45,7 @@ class Teachers::RegistrationsController < Devise::RegistrationsController
     current_teacher.assign_attributes(account_update_params)
     if current_teacher.save
       flash[:notice] = "講師情報を編集しました"
-	    redirect_to teachers_path
+	    redirect_to teacher_path(current_teacher)
     else
       flash.now[:error] = "講師情報を編集できませんでした"
       render :profile_edit
@@ -61,12 +61,12 @@ class Teachers::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:last_name, :first_name, :course])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :course])
   end
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-     teachers_path
+     teacher_path(current_teacher)
   end
 
   # The path used after sign up for inactive accounts.

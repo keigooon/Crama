@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <a class="navbar-brand ml-3" href="/students/<%= current_student.id %>">Mypage</a>
+  <button class="navbar-toggler collapased" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      
+      <%# ドロップダウン%>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Action
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item" href="/students/<%= current_student.id %>/reports">ファイルの確認</a>
+          <a class="dropdown-item" href="#">質問を投稿する</a>
+          <a class="dropdown-item" href="#">生徒情報の修正</a>
+          <%= link_to "ログアウト", destroy_student_session_path, method: :delete, class: "dropdown-item" %>
+        </div>
+      </li>
+      
+    </ul>
+  </div>
+</nav>

@@ -26,7 +26,7 @@ class Teachers::SessionsController < Devise::SessionsController
   # end
   
   def after_sign_in_path_for(resource)
-    teachers_path
+    teacher_path(current_teacher)
   end
   
   def after_sign_out_path_for(resource)

@@ -1,0 +1,21 @@
+<div class="accordion" id="StudentsIndex">
+  <% grades.each do |i| %>
+    <div class="card">
+      <div class="card-header" id="heading<%= i %>">
+        <h5 class="mb-0 text-center">
+          <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapse<%= i %>" aria-expanded="false" aria-controls="collapse<%= i %>">
+            <%= ApplicationRecord::GRADE[i] %>
+            <span class="badge bg-secondary text-white ml-3"><%= Student.where(grade: i).count %>人</span>
+          </button>
+        </h5>
+      </div>
+      <div id="collapse<%= i %>" class="collapse" data-parent="#StudentsIndex">
+        <div class="card-body">
+          <% Student.where(grade: i).each do |student| %>
+            <%= link_to student.full_name, student_lesson_logs_path(student) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

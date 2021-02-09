@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="card offset-sm-3 col-sm-6">
+    <div class="card-header">
+      追記
+    </div>
+    <div class="card-body">
+      <%= form_for(@lesson_log, :url => {:controller => :lesson_logs, :action => :update}, local: true) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+        
+        <%= f.hidden_field :id, value: @lesson_log.id%>
+        
+        <div class="form-group">
+          <%= f.label :remarks, '備考' %>
+          <%= f.text_field :remarks, class: "form-control"%>
+        </div>
+        
+         <%= f.submit '修正' , class: "btn btn-primary"%>
+      
+      <% end %>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,33 @@
+<div class="card mb-3">
+  <div class="card-body text-center">
+    <h4 class="card-title border-bottom border-2 border-primary">生徒一覧</h4>
+    <p class="card-text">タブをクリックすると学年別に生徒を表示できます。生徒名から授業記録を確認することができます。</p>
+  </div>
+</div>
+
+
+<ul class="nav nav-tabs nav-justified">
+  <li class="nav-item">
+    <a href="#grade1" class="nav-link" data-toggle="tab">小学校</a>
+  </li>
+  <li class="nav-item">
+    <a href="#grade2" class="nav-link active" data-toggle="tab">中学校</a>
+  </li>
+  <li class="nav-item">
+    <a href="#grade3" class="nav-link" data-toggle="tab">高校</a>
+  </li>
+</ul>
+
+<%# bootstrapの挙動がおかしい。小学校の時だけアコーディオンの開閉がうまくいいっている。何が悪さしているんだ。。。%>
+<div class="tab-content">
+  <div id="grade1" class="tab-pane">
+    <%= render 'student_index', grades: [*1..4]%>
+  </div>
+  <div id="grade2" class="tab-pane active">
+    <%= render 'student_index', grades: [*5..7]%>
+  </div>
+  <div id="grade3" class="tab-pane">
+    <%= render 'student_index', grades: [*8..10]%>
+  </div>
+</div>
+

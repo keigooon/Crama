@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <a class="navbar-brand ml-3" href="/">Crama</a>
+  <button class="navbar-toggler collapased" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      
+      <%# 生徒用ドロップダウン%>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          生徒
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <div class="dropdown-item font-weight-bold">生徒として</div>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/students/sign_up">アカウント登録</a>
+          <a class="dropdown-item" href="/students/sign_in">ログイン</a>
+        </div>
+      </li>
+      
+      <%# 講師用ドロップダウン　%>
+      <li class="nav-item dropdown ">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          講師
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item font-weight-bold">講師として</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/teachers/sign_up">アカウント登録</a>
+          <a class="dropdown-item" href="/teachers/sign_in">ログイン</a>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</nav>

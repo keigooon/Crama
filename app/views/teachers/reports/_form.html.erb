@@ -1,6 +1,6 @@
 <%= form_for(report, :url => {:controller => :reports, :action => action}, local: true) do |f| %>
   <%= render 'layouts/error_messages', model: f.object %>
-  <%= f.fields_for 'lesson_attributes', @report.lesson do |s| %>
+  <%= f.fields_for 'lesson_attributes', report.lesson do |s| %>
     <%= s.hidden_field :teacher_id, value: current_teacher.id %>
     
     <div class="form-group">
@@ -31,7 +31,8 @@
       <%= s.label :unit, '単元：' %>
       <%= s.text_field :unit, class: "form-control"%>
     </div>
-  
+
+    
   <% end %>
   
   
@@ -88,5 +89,6 @@
     <%= f.text_field :homework, class: "form-control"%>
   </div>
   
-  <%= f.submit '作成' , class: "btn btn-primary"%>
+   <%= f.submit 'submit' , class: "btn btn-primary"%>
+
 <% end %>

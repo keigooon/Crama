@@ -31,4 +31,6 @@ class Student < ApplicationRecord
     }
     number_grade[self.grade]
   end
+  
+  
 end

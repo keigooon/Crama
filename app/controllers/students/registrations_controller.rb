@@ -2,7 +2,7 @@
 
 class Students::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_account_update_params, only: [:update, :profile_update]
 
   # GET /resource/sign_up
   # def new
@@ -38,6 +38,21 @@ class Students::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def profile_edit
+ 
+  end
+ 
+  def profile_update
+    current_student.assign_attributes(account_update_params)
+    if current_teacher.save
+      flash[:notice] = "生徒情報を編集しました"
+	    redirect_to students_path
+    else
+      flash.now[:error] = "生徒情報を編集できませんでした"
+      render :profile_edit
+    end
+  end
+
   protected
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -46,14 +61,14 @@ class Students::RegistrationsController < Devise::RegistrationsController
   end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :school, :grade])
+  end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_up_path_for(resource)
+    students_path
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)

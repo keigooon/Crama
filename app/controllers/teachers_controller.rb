@@ -1,7 +1,6 @@
 class TeachersController < ApplicationController
-  before_action :authenticate_teacher!, only: [:index]
+  before_action :authenticate_teacher!, only: [:show]
   
-  def index
-    @teachers = Teacher.all
+  def show
   end
 end

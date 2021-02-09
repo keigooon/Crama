@@ -3,19 +3,19 @@ Rails.application.routes.draw do
   
   #生徒関連
   
-  devise_for :students, skip: ["passwords","registrations"], controllers: {
-    sessions: 'students/sessions'
+  devise_for :students, skip: ["passwords"], controllers: {
+    sessions: 'students/sessions',
+    registrations: 'students/registrations' 
   }
   
   devise_scope :student do
-    get 'students/sign_up', to: 'students/registrations#new', as: :new_student_registration
-    #get 'students/profile_edit', to: 'students/registrations#profile_edit', as: :profile_edit
-    #patch 'students/profile_update', to: 'students/registrations#profile_update', as: :profile_update
+    get 'students/profile_edit', to: 'students/registrations#profile_edit', as: :students_profile_edit
+    patch 'students/profile_update', to: 'students/registrations#profile_update', as: :students_profile_update
   end
   
-  resources :students, :only => [:show]
-  resources :students do
-    resources :reports, :only => [:index, :show] , controller: "students/reports"
+  resources :students, :only => [:index, :show] do
+    resources :reports, :only => [:index, :show], controller: "students/reports"
+    resources :lesson_logs, :only => [:index, :edit, :update], controller: "students/lesson_logs"
   end
   
   
@@ -28,14 +28,13 @@ Rails.application.routes.draw do
   }
   
   devise_scope :teacher do
-    get 'teachers/profile_edit', to: 'teachers/registrations#profile_edit', as: :profile_edit
-    patch 'teachers/profile_update', to: 'teachers/registrations#profile_update', as: :profile_update
+    get 'teachers/profile_edit', to: 'teachers/registrations#profile_edit', as: :teachers_profile_edit
+    patch 'teachers/profile_update', to: 'teachers/registrations#profile_update', as: :teachers_profile_update
   end
 
-  resources :teachers, :only => [:index] 
-  
-  namespace :teachers do
-    resources :reports, controller: :reports
+  resources :teachers, :only => [:show] do
+    resources :reports, controller: "teachers/reports"
   end
+
   
 end
