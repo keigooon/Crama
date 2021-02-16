@@ -1,0 +1,3 @@
+$('textarea').val("");
+$('#commentsModal').modal('hide');
+$(".question-comments").html("<%= j(render 'comments', comments: @comments)%>");

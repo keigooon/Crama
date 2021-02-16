@@ -1,0 +1,3 @@
+$('textarea').val("");
+$('#questionModal').modal('hide');
+$("#question-index").html("<%= j(render './questions/index', questions: @questions)%>");

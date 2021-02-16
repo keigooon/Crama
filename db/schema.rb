@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_02_024434) do
+ActiveRecord::Schema.define(version: 2021_02_10_075632) do
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "content"
+    t.boolean "is_teacher"
+    t.bigint "question_id"
+    t.bigint "student_id"
+    t.bigint "teacher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_comments_on_question_id"
+    t.index ["student_id"], name: "index_comments_on_student_id"
+    t.index ["teacher_id"], name: "index_comments_on_teacher_id"
+  end
 
   create_table "lesson_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "lesson_id"
@@ -31,6 +44,14 @@ ActiveRecord::Schema.define(version: 2021_02_02_024434) do
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_lessons_on_student_id"
     t.index ["teacher_id"], name: "index_lessons_on_teacher_id"
+  end
+
+  create_table "questions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "content"
+    t.bigint "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_questions_on_student_id"
   end
 
   create_table "reports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -77,8 +98,12 @@ ActiveRecord::Schema.define(version: 2021_02_02_024434) do
     t.index ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "questions"
+  add_foreign_key "comments", "students"
+  add_foreign_key "comments", "teachers"
   add_foreign_key "lesson_logs", "lessons"
   add_foreign_key "lessons", "students"
   add_foreign_key "lessons", "teachers"
+  add_foreign_key "questions", "students"
   add_foreign_key "reports", "lessons"
 end

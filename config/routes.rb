@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   
   devise_for :students, skip: ["passwords"], controllers: {
     sessions: 'students/sessions',
-    registrations: 'students/registrations' 
+    registrations: 'students/registrations'
   }
   
   devise_scope :student do
@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :students, :only => [:index, :show] do
     resources :reports, :only => [:index, :show], controller: "students/reports"
     resources :lesson_logs, :only => [:index, :edit, :update], controller: "students/lesson_logs"
+    resources :questions, :only => [:index, :show, :create, :destroy], controller: "students/questions"
   end
   
   
@@ -36,5 +37,8 @@ Rails.application.routes.draw do
     resources :reports, controller: "teachers/reports"
   end
 
+  resources :questions, :only => [:index]
+  
+  resources :comments, :only => [:create, :destroy]
   
 end

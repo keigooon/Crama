@@ -10,22 +10,7 @@
       <%= link_to "生徒用ファイル", teacher_reports_path(current_teacher), class:"btn btn-info list-group-item list-group-item-action" %>
       <%= link_to "講師情報の修正", teachers_profile_edit_path, class:"btn btn-info list-group-item list-group-item-action" %>
       <%= link_to "ログアウト", destroy_teacher_session_path, method: :delete, class:"btn btn-info list-group-item list-group-item-action"%>
-      <button type="button" class="list-group-item list-group-item-action">生徒の質問を見る</button>
-      <button type="button" class="list-group-item list-group-item-action">未定</button>
+      <%= link_to "質問一覧", questions_path, class:"btn btn-info list-group-item list-group-item-action"%>
     </div>
   </div>
-  <% if false %>
-    <div class="card col-12">
-      <div class="card-header">
-        <h5 class="card-title">講師一覧</h5>
-      </div>
-      <div class="card-body">
-        <% @teachers.each do |teacher| %>
-          <div>
-            <%= teacher.full_name %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
 </div>

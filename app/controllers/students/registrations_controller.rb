@@ -39,14 +39,13 @@ class Students::RegistrationsController < Devise::RegistrationsController
   # end
 
   def profile_edit
- 
   end
  
   def profile_update
     current_student.assign_attributes(account_update_params)
-    if current_teacher.save
+    if current_student.save
       flash[:notice] = "生徒情報を編集しました"
-	    redirect_to students_path
+	    redirect_to student_path(current_student)
     else
       flash.now[:error] = "生徒情報を編集できませんでした"
       render :profile_edit

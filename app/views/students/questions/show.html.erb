@@ -1,0 +1,68 @@
+<div class="question-show">
+  <div class="question-box mt-3">
+    <div class="card">
+      <div class="card-header text-center">
+        <a class="font-weight-bold"><%= @question.student.full_name %></a>
+        <a class="text-muted">at <%= l @question.created_at, format: :short%></a>
+      </div>
+      <div class="card-body">
+        <p class="card-text"><%= @question.content %></p>
+      </div>
+    </div>
+  </div>
+  
+  <button type="button" class="btn btn-primary mt-3 mb-3" data-toggle="modal" data-target="#commentsModal">
+    コメントを投稿する
+  </button>
+
+  <h6>コメント一覧</h6>
+  <div class="question-comments">
+    <%= render 'comments/comments', comments: @comments %>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="commentsModal" tabindex="-1" role="dialog" aria-labelledby="commentsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="commentsModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <% if teacher_signed_in? %>
+        <%= form_for(current_teacher.comments.build, :url => {:controller => '/comments', :action => :create} , remote: true) do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
+          <div class="modal-body">
+            <%= f.hidden_field :question_id, value: @question.id %>
+            <div class="form-group">
+              <%= f.label :content, 'コメント内容' %>
+              <%= f.text_area :content, class: "form-control"%>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+            <%= f.submit '投稿' , class: "btn btn-primary"%>
+          </div>
+        <% end %>
+      <% elsif student_signed_in? %>
+        <%= form_for(current_student.comments.build, :url => {:controller => '/comments', :action => :create} , remote: true) do |f| %>
+            <%= render 'layouts/error_messages', model: f.object %>
+            <div class="modal-body">
+              <%= f.hidden_field :question_id, value: @question.id %>
+              <div class="form-group">
+                <%= f.label :content, 'コメント内容' %>
+                <%= f.text_area :content, class: "form-control"%>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+              <%= f.submit '投稿' , class: "btn btn-primary"%>
+            </div>
+          <% end %>
+        <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+
+<div class="row">
+  <div class="card col-sm-6 offset-sm-3">
+    <div class="card-header">
+      生徒情報編集
+    </div>
+    <div class="card-body">
+      <%= form_for current_student, url: {action: 'profile_update'} do |f| %>
+        <%= render "students/shared/error_messages", resource: current_student%>
+        <div class="field form-group">
+          <%= f.label :姓 %><br />
+          <%= f.text_field :last_name %> 
+        </div>
+        
+        <div class="field form-group">
+          <%= f.label :名 %><br />
+          <%= f.text_field :first_name, autofocus: true %>
+        </div>
+        
+        <div class="field form-group ">
+          <%= f.label :学年 %><br />
+          <%= f.select :grade, [["小３",1],["小４",2],["小5",3],["小6",4],["中1",5],["中2",6],["中3",7],["高1",8],["高2",9],["高3",10]], include_blank: "選択して下さい"%>
+        </div>
+        
+        <div class="field form-group">
+          <%= f.label :メールアドレス %><br />
+          <%= f.text_field :email, autocomplete: "email"%>
+        </div>
+        
+        <div class="actions mt-3">
+          <%= f.submit "編集" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

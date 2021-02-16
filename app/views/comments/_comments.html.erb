@@ -1,0 +1,30 @@
+
+<%= stylesheet_link_tag "comment", :media => "all" %>
+
+<% comments.each do |comment|%>
+  <div class="card">
+    <div class="card-body">
+      <% if comment.is_teacher == true %>
+        <div class="card-title">
+          <a><span class="font-weight-bold" style="color:red;">講師</span>：<%= comment.teacher.full_name %></a>
+          <a class="text-muted">at <%= l comment.created_at, format: :short%></a>
+        </div>
+        <p class="card-text"><%= safe_join(comment.content.split("\n"), tag(:br)) %></p>
+        <% if current_teacher == comment.teacher %>
+          <a><%= link_to "削除", comment_path(comment), method: :delete, remote: true, class:"btn btn-outline-primary btn-sm float-right mr-2", data: {confirm: "質問を削除してよろしいですか"}%></a>
+        <% end %>
+      <% else %>
+        <div class="card-title">
+          <span class="font-weight-bold" style="color:blue;">生徒</span>：<%= comment.student.full_name %>
+          <a class="text-muted">at <%= l comment.created_at, format: :short%></a>
+        </div>
+        <p class="card-text"><%= safe_join(comment.content.split("\n"), tag(:br)) %></p>
+        <% if current_student == comment.student %>
+          <%= link_to "削除", comment_path(comment), method: :delete, remote: true, class:"btn btn-primary btn-sm float-right mr-2", data: {confirm: "質問を削除してよろしいですか"}%>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<%= paginate comments %>

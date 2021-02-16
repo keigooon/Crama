@@ -2,6 +2,9 @@ class Student < ApplicationRecord
   
   has_many :lessons
   has_many :teachers, through: :lessons
+  has_many :questions
+  has_many :comments
+  
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

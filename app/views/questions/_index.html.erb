@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag "question_box", :media => "all" %>
+
+<% questions.each do |question| %>
+  <div class="question-box">
+    <div class="card text-center">
+      <div class="card-header row">
+        <div class="col-sm-8">
+          <a class="font-weight-bold"><%= question.student.full_name %></a>
+          <a class="text-muted">at <%= l question.created_at, format: :short%></a>
+        </div>
+        <div class="col-sm-4">
+          <%= link_to "詳細", student_question_path(question.student, question.id), class:"btn btn-primary btn-sm float-right"%>
+          <% if current_student == question.student %>
+            <%= link_to "削除", student_question_path(question.student, question.id), method: :delete, remote: true, class:"btn btn-primary btn-sm float-right mr-2", data: {confirm: "質問を削除してよろしいですか"}%>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-text"><%= question.content %></p>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= paginate questions %>
