@@ -3,6 +3,7 @@
 class Teachers::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update, :profile_update]
+  before_action :not_logged_in, only: [:new, :create]
 
   # GET /resource/sign_up
   # def new
