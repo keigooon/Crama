@@ -98,3 +98,28 @@ Report.create(id: 6, lesson_id: 6, content:"字が綺麗ですね", exercise: "e
 6.times do |i|
   LessonLog.create(id: i+1, lesson_id: i+1)
 end
+
+Question.create(id:1, student_id: 1, content: "数学の二次関数の平方完成のやり方がわかりません。教えてください。")
+Comments.create(id:1, question_id: 1, is_teacher: 1, teacher_id: 2, content: "コメント１")
+Comments.create(id:2, question_id: 1, is_teacher: 0, student_id: 1, content: "コメント2")
+Comments.create(id:3, question_id: 1, is_teacher: 1, teacher_id: 2, content: "コメント3")
+
+Question.create(id:2, student_id: 4, content: "理科の湿度がわからないので教えて欲しいです")
+Comments.create(id:4, question_id: 2, is_teacher: 1, teacher_id: 2, content: "コメント4")
+Comments.create(id:5, question_id: 2, is_teacher: 0, student_id: 4, content: "コメント5")
+Comments.create(id:6, question_id: 2, is_teacher: 1, teacher_id: 2, content: "コメント6")
+
+Question.create(id:3, student_id: 3, content: "社会の公民の勉強の仕方がわかりません")
+Comments.create(id:7, question_id: 3, is_teacher: 1, teacher_id: 2, content: "コメント7")
+Comments.create(id:8, question_id: 3, is_teacher: 0, student_id: 3, content: "コメント8")
+Comments.create(id:9, question_id: 3, is_teacher: 1, teacher_id: 2, content: "コメント9")
+
+Question.create(id:4, student_id: 2, content: "英語で時制がわかりません。")
+Comments.create(id:10, question_id: 4, is_teacher: 1, teacher_id: 2, content: "コメント10")
+Comments.create(id:11, question_id: 4, is_teacher: 0, student_id: 2, content: "コメント11")
+Comments.create(id:12, question_id: 4, is_teacher: 1, teacher_id: 2, content: "コメント12")
+
+Question.create(id:5, student_id: 1, content: "国語の漢文がわかりません。")
+Comments.create(id:13, question_id: 5, is_teacher: 1, teacher_id: 2, content: "コメント13")
+Comments.create(id:14, question_id: 5, is_teacher: 0, student_id: 1, content: "コメント14")
+Comments.create(id:15, question_id: 5, is_teacher: 1, teacher_id: 2, content: "コメント15")
