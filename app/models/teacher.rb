@@ -16,4 +16,10 @@ class Teacher < ApplicationRecord
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
   validates :course, inclusion: { in: ["文系","理系"] }
+  
+  def self.guest
+    find_or_create_by(last_name: "講師", first_name: "ゲスト", email: "guest_teacher@example.com", course: "理系") do |teacher|
+      teacher.password = "pass"
+    end
+  end
 end

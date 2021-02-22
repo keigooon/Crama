@@ -19,7 +19,13 @@ class Teachers::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # protected
+  def new_guest
+    teacher = Teacher.guest
+    sign_in teacher
+    redirect_to teacher_path(teacher)
+  end
+
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params

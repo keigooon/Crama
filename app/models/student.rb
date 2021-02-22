@@ -35,5 +35,10 @@ class Student < ApplicationRecord
     number_grade[self.grade]
   end
   
+  def self.guest
+    find_or_create_by(last_name: "生徒", first_name: "ゲスト", email: "guest_student@example.com", grade: 7) do |student|
+      student.password = "pass"
+    end
+  end
   
 end

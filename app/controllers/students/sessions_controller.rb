@@ -18,6 +18,12 @@ class Students::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
+  
+  def new_guest
+    student = Student.guest
+    sign_in student
+    redirect_to student_path(student)
+  end
 
   protected
 

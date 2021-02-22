@@ -12,5 +12,15 @@
       <a class="btn btn-primary btn-lg" href="/teachers/sign_in" role="button">講師としてログイン</a>
     </div>
   </div>
-  
+  <hr class="my-4">
+  <div class="row text-center">
+    <div class="col-md-6">
+      <p>生徒用テストログインはこちらからできます</p>
+      <%= link_to "生徒としてログイン", students_guest_sign_in_path, method: :post, class:"btn btn-primary btn-lg"%>
+    </div>
+    <div class="col-md-6">
+      <p>講師用テストログインはこちらからできます</p>
+      <%= link_to "講師としてログイン", teachers_guest_sign_in_path, method: :post, class:"btn btn-primary btn-lg"%>
+    </div>
+  </div>
 </div>
