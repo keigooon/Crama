@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag "question_button", :media => "screen and (min-width:576px)" %>
+<%= stylesheet_link_tag "question_button", :media => "screen and (min-width:960px)" %>
 
 
 
@@ -28,12 +28,12 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-2 mt-3 mb-3">
+  <div class="col-lg-2 mt-3 mb-3">
     <button type="button" class="btn btn-info new-question-button" data-toggle="modal" data-target="#questionModal">
       質問を投稿する
     </button>
   </div>
-  <div class="col-sm-6" id="question-index">
+  <div class="col-lg-6" id="question-index">
     <h5 class="pt-2 text-center">質問一覧</h5>
     <%= render "./questions/index", questions: @questions%>
   </div>

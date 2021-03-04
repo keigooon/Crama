@@ -16,8 +16,9 @@ class CommentsController < ApplicationController
   end
   
   def destroy
+    qid = @comment.question_id
     @comment.destroy
-    @comments = Comment.where(question_id: @comment.question_id).order(id: :desc).page(params[:page]).per(5)
+    @comments = Comment.where(question_id: qid).order(id: :desc).page(params[:page]).per(5)
   end
   
   private
@@ -29,7 +30,7 @@ class CommentsController < ApplicationController
   
   
   def correct_user
-    @comment = Comment.find_by(params[:id])
+    @comment = Comment.find(params[:id])
     if teacher_signed_in?
       unless @comment.teacher == current_teacher
         redirect_to student_question_path(@comment.question.student, @comment.question)

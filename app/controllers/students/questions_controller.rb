@@ -1,6 +1,6 @@
 class Students::QuestionsController < ApplicationController
   before_action :authenticate_student!, only: [:index, :create, :destroy]
-  before_action :correct_student, only: [:index, :create, :destroy]
+  before_action :correct_student, only: [:create, :destroy]
   
   def index
     @questions = current_student.questions.all.order(id: :desc).page(params[:page]).per(5)
@@ -31,8 +31,8 @@ class Students::QuestionsController < ApplicationController
   end
   
   def correct_student
-    @student = Student.find_by(params[:student_id])
-    unless @student == current_student
+    @student = Student.find(params[:student_id])
+    unless @student.id == current_student.id
       redirect_to student_path(current_student)
     end
   end
